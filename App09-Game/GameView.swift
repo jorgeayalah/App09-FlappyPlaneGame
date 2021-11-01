@@ -11,8 +11,8 @@ import SpriteKit
 struct GameView: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @State var scene: SKScene = GameScene()
-    @ObjectObserved currentScore
+    @State var scene: SKScene = GameScene(.constant(0))
+    @State var score: Int = 0
     
     
     var body: some View {
@@ -22,7 +22,7 @@ struct GameView: View {
             VStack {
                 HStack {
                     VStack{
-                        Text("Score: \(currentScore)")
+                        Text("Score: \(score)")
                             .font(.body)
                             .background(Color.black)
                             .padding(.top, 10)

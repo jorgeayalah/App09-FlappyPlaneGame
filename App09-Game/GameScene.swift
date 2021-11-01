@@ -15,18 +15,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var planeTouched = false
     var started = false
     var timer: Timer?
-    @Binding var currentScore: Int!
+    @Binding var currentScore: Int
     
     //paste inits and required init declarations
-    init(_ name: Binding<String>, _score: Binding<Int>){
-        _currentName = name
+    init(_ score: Binding<Int>){
         _currentScore = score
-        super.init(size: CGSize(width: 844, height: 390))
+        super.init(size: CGSize(width: 926, height: 444))
         self.scaleMode = .fill
     }
     
     required init?(coder aDecoder: NSCoder) {
-        _currentName = .constant("Jorge")
         _currentScore = .constant(0)
         super.init(coder: aDecoder)
     }
@@ -142,7 +140,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //            music.removeFromParent()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2){
                 print("hola")
-                let scene = GameScene()
+                let scene = GameScene(self.$currentScore)
                 scene.scaleMode = .aspectFit
                 scene.size = CGSize(width: 926, height: 444)
                 scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
